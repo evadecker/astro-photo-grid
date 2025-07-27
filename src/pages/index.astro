@@ -8,7 +8,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 ---
 
-<BaseLayout title="Images" description="It's a new project!">
+<BaseLayout
+  title="Astro Image Grid"
+  description="A minimal, single-page photo gallery for Astro."
+>
   <section class="justified-gallery" id="photoswipe">
     {
       Object.entries(images).map(async ([_path, image], index) => {
@@ -23,7 +26,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
             <Image
               format="webp"
               src={imageData}
-              alt="Image"
+              alt=""
               height={400}
               loading={index < 20 ? "eager" : "lazy"}
             />
