@@ -42,6 +42,28 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 
   Fancybox.bind("[data-fancybox]", {
     theme: "auto",
+    mainStyle: {
+      "--f-button-width": "50px",
+      "--f-button-height": "50px",
+      "--f-button-border-radius": "50%",
+      "--f-toolbar-padding": "30px",
+    },
+    Carousel: {
+      Arrows: false,
+      breakpoints: {
+        "(min-width: 1024px)": {
+          Arrows: true,
+        },
+      },
+      Toolbar: {
+        display: {
+          left: [],
+          middle: [],
+          right: ["close"],
+        },
+      },
+      transition: "slide",
+    },
   });
 </script>
 
