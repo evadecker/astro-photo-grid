@@ -1,0 +1,12 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --bg-dark: #000000;
+  --outline: #ffffff;
+  --font: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+  background-color: light-dark(var(--bg), var(--bg-dark));
+  font-family: var(--font);
+}

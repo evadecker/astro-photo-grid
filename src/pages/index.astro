@@ -1,7 +1,91 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "~/layouts/BaseLayout.astro";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/*.{jpg,jpeg,png,webp}",
+);
 ---
 
-<BaseLayout title="Eva's Astro Starter" description="It's a new project!">
-  <h1>Hello, world!</h1>
+<BaseLayout title="Images" description="It's a new project!">
+  <section class="justified-gallery" id="photoswipe">
+    {
+      Object.entries(images).map(async ([_path, image], index) => {
+        const { default: imageData } = await image();
+        return (
+          <a
+            style={`--width: ${imageData.width}; --height: ${imageData.height};`}
+            href={imageData.src}
+            target="_blank"
+            data-fancybox="gallery"
+          >
+            <Image
+              format="webp"
+              src={imageData}
+              alt="Image"
+              height={400}
+              loading={index < 20 ? "eager" : "lazy"}
+            />
+          </a>
+        );
+      })
+    }
+  </section>
 </BaseLayout>
+
+<script>
+  import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+
+  Fancybox.bind("[data-fancybox]", {
+    theme: "auto",
+  });
+</script>
+
+<style>
+  .justified-gallery {
+    --padding: max(2.5vw, 12px);
+    --space: max(2.5vw, 12px);
+    --min-height: clamp(200px, 20vw, 400px);
+
+    padding: var(--padding);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space);
+
+    a {
+      flex-grow: calc(var(--width) * (100000 / var(--height)));
+      flex-basis: calc(var(--min-height) * (var(--width) / var(--height)));
+      aspect-ratio: var(--width) / var(--height);
+      overflow: hidden;
+      opacity: 1;
+      transition: all 0.05s ease-in-out;
+    }
+
+    a img {
+      display: block;
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--outline);
+      outline-offset: 2px;
+      transform: scale(1.05);
+      z-index: 1;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    a.hidden {
+      transition: opacity 0.4s ease-in-out;
+      opacity: 0;
+    }
+
+    &::after {
+      content: " ";
+      flex-grow: 1000000000;
+    }
+  }
+</style>

@@ -14,6 +14,9 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.4.1
         version: 3.4.1
+      '@fancyapps/ui':
+        specifier: ^6.0.17
+        version: 6.0.17
       astro:
         specifier: ^5.12.3
         version: 5.12.3(@types/node@24.1.0)(jiti@2.4.2)(rollup@4.45.3)(typescript@5.8.3)(yaml@2.8.0)
@@ -368,6 +371,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fancyapps/ui@6.0.17':
+    resolution: {integrity: sha512-j4AKRpP/NmhqeDbzYNwkk2LgUKDh+CK4aInpWff0Gg+Ze/3XotlWrI+4cGM1uhHbiYI/oDaPudJ0Zl4hc3lSdg==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -2636,6 +2642,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.8':
     optional: true
+
+  '@fancyapps/ui@6.0.17': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:

@@ -18,6 +18,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/sitemap": "^3.4.1",
+    "@fancyapps/ui": "^6.0.17",
     "astro": "^5.12.3",
     "smartypants": "^0.2.2",
     "typescript": "^5.8.3"
