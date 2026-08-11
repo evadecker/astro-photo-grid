@@ -1,19 +1,34 @@
 {
-  "name": "eva-astro-starter",
+  "name": "astro-photo-grid",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.10.0",
+      "onFail": "download"
+    }
+  },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "prepare": "husky",
+    "prepare": "simple-git-hooks",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check && biome check",
-    "check:fix": "astro check && biome check --write",
-    "stylelint": "stylelint '**/*.{astro,css}'",
-    "stylelint:fix": "stylelint '**/*.{astro,css}' --fix"
+    "check:fix": "astro check && biome check --write"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "./node_modules/.bin/nano-staged"
+  },
+  "nano-staged": {
+    "*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,json,jsonc,css,astro}": [
+      "biome check --write"
+    ]
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -25,10 +40,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.7",
-    "husky": "^9.1.7",
+    "nano-staged": "^1.0.2",
     "sharp": "^0.35.3",
-    "stylelint": "^17.14.1",
-    "stylelint-config-astro": "^2.0.0",
-    "stylelint-config-standard": "^40.0.0"
+    "simple-git-hooks": "^2.13.1"
   }
 }
